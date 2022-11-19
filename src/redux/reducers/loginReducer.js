@@ -7,35 +7,39 @@ import {
 
 const initialState = {
   loading: false,
-  user: localStorage.getItem('user'),
-  message: []
+  token: localStorage.getItem('token'),
+  message: null
 }
 
 export default function(state = initialState, action) {
   const { type, payload } = action
 
   switch (type) {
-    case FETCH_LOGIN: 
+    case FETCH_LOGIN:
       return {
         ...state,
         loading: true
       }
     case INICIO_SESION_OK:
-      localStorage.setItem('user', payload)
+      localStorage.setItem('token', payload)
       return {
         ...state,
-        user: payload
+        loading: false,
+        message: null,
+        token: payload
       }
     case INICIO_SESION_FAILED:
       return {
         ...state,
+        loading: false,
         message: payload.message
       }
     case CERRAR_SESION:
-      localStorage.removeItem('user')
+      localStorage.removeItem('token')
       return {
         ...state,
-        user: null
+        loading: false,
+        token: null
       }
     default:
       return state

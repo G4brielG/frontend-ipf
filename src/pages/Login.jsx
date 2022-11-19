@@ -1,68 +1,79 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/actions/loginActions'
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [form, setForm] = useState({})
-  const dispatch = useDispatch()
 
-  const pruebaRedux = () => {
-    const datos = {
-      correo: "si@gmail.com",
-      clave: "laweafomeql",
-    }
-    console.log(datos)
-    dispatch(login(datos))
+  const { loading, token, message } = useSelector((state) => state.login);
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleSetForm = (e) => {
+    const { name, value } = e.target
+    setForm({ ...form, [name]: value })
   }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    validaciones && dispatch(login(form))
+  }
+  
+  const validaciones = () => {
+    form.correo !== undefined && true
+    form.clave !== undefined && true
+  }
+
+  useEffect(() => {
+    if (token !== null) {
+      navigate("/home")
+    }
+  }, [token])
   return (
     <>
-      <section className="vh-lg-100 mt-6 mt-lg-0 bg-soft d-flex align-items-center">
-        <div className="container">
-          <div className="col-12 d-flex align-items-center justify-content-center mt-5">
-            <form className="form border  rounded p-3 mt-5 shadow-lg p-3 mb-5 bg-body rounded">
-              <div className="text-center text-md-center mb-4 mt-md-0 animate__animated animate__pulse">
-                <h1>INICIAR SESION</h1>
-              </div>
+      <section className="vh-100 bg-primary bg-opacity-50">
+        <div className="container py-5 h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div className="card shadow-2-strong">
+                <div className="card-body p-5 text-center">
+                  <form onSubmit={handleSubmit}>
+                    <h3 className="mb-5">Iniciar sesión</h3>
 
-              <div className="form-group mb-4">
-                <div className="input-group">
-                  <span className="input-group-text px-3" id="basic-addon1">
-                    <i className="fas fa-user"></i>
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="usuario"
-                    id="usuario"
-                    name="usuario"
-                    autoFocus
-                    required
-                  />
+                    <div className="form-outline mb-4">
+                      <label className="form-label">Correo electrónico</label>
+                      <input
+                        type="email"
+                        name="correo"
+                        className="form-control form-control-lg"
+                        onChange={handleSetForm}
+                      />
+                    </div>
+
+                    <div className="form-outline mb-4">
+                      <label className="form-label">Contraseña</label>
+                      <input
+                        type="password"
+                        name='clave'
+                        className="form-control form-control-lg"
+                        onChange={handleSetForm} />
+                    </div>
+
+                    <button className="form-control btn btn-primary btn-lg btn-block d-block my-3" type="submit">{loading ? "Cargando..." : "Enviar"}</button>
+
+                    {
+                      message !== null && (
+                        <div className="bg-danger text-wrap  d-block p-2 text-white">
+                          {message}
+                        </div>
+                      )
+                    }
+                  </form>
                 </div>
               </div>
-
-              <div className="form-group mb-4">
-                <div className="input-group">
-                  <span className="input-group-text px-3" id="basic-addon2">
-                    <i className="fas fa-lock"></i>
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="usuario"
-                    id="usuario"
-                    name="usuario"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="d-grid">
-                <button className="btn btn-primary" onClick={pruebaRedux}>
-                  ENVIAR
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </section>

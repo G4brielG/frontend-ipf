@@ -7,19 +7,19 @@ export const fetchLogin = () => {
   }
 }
 
-export const fetchOK = (user) => {
+export const fetchOK = (token) => {
   return {
     type: INICIO_SESION_OK,
     payload: {
-      user
+      token
     }
   }
 }
 
-export const fetchFailed = (error) => {
+export const fetchFailed = (message) => {
   return {
     type: INICIO_SESION_FAILED,
-    payload: error
+    payload: {message}
   }
 }
 
@@ -29,16 +29,16 @@ export const logout = () => {
   }
 }
 
-export const login = ({correo, clave}) => {
-  console.log({ correo, clave })
+export const login = ({ correo, clave }) => {
+  // console.log({ correo, clave })
   return async(dispatch) => {
     try {
       dispatch(fetchLogin())
       const response = await fetch(`${SERVER}/login`, {
         method: 'POST',
         body: JSON.stringify({
-          correo: "si@gmail.com",
-          clave: "laweafomeql"
+          correo: correo,
+          clave: clave
         }),
         headers:{
           "Content-type": "application/json; charset=UTF-8"
@@ -46,9 +46,9 @@ export const login = ({correo, clave}) => {
       })
       const result = await response.json()
 
-      result.user === undefined
+      result.token === undefined
         ? dispatch(fetchFailed(result.message))
-        : dispatch(fetchOK(result.user))
+        : dispatch(fetchOK(result.token))
     } catch (error) {
       dispatch(fetchFailed(error))
     }
