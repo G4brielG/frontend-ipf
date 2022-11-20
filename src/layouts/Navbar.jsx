@@ -1,60 +1,100 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { cerrarSesion } from '../redux/actions/loginActions'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   return (
-    <nav className="navbar navbar-dark bg-dark">
-      <div className="container-fluid">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+    <>
+      <nav
+        class="d-block  bg-white border"
+        style={{ marginRight: '70%' }}
+      >
+        <div class="position-sticky">
+          <div class="list-group list-group-flush">
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+              aria-current="true"
+            >
+              <i class="fas fa-tachometer-alt fa-fw me-3" style={{ alignItems: "center", textAlign: "center"}}></i>
+              <span>IPF</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"  // active
+            >
+              <i class="fas fa-home fa-fw me-3"></i>
+              <span>Inicio</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item"
+            >
+              <i class="fas fa-lock fa-fw me-3"></i>
+              <span>Materias</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+            >
+              <i class="fas fa-chart-pie fa-fw me-3"></i>
+              <span>SEO</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+            >
+              <i class="fas fa-chart-bar fa-fw me-3"></i>
+              <span>Orders</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+            >
+              <i class="fas fa-globe fa-fw me-3"></i>
+              <span>International</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+            >
+              <i class="fas fa-building fa-fw me-3"></i>
+              <span>Partners</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+            >
+              <i class="fas fa-calendar fa-fw me-3"></i>
+              <span>Calendar</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+            >
+              <i class="fas fa-users fa-fw me-3"></i>
+              <span>Users</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item py-2 ripple"
+            >
+              <i class="fas fa-money-bill fa-fw me-3"></i>
+              <span>Sales</span>
+            </a>
+            <Link to="/" className="list-group-item" onClick={dispatch(cerrarSesion())}>
+              <i class="fa-solid fa-right-to-bracket me-3 text-danger"></i>
+              <label>Cerrar sesión</label>
+            </Link>
+            <div style={{ paddingBottom: '100%'}}>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-            </li>
-
-            <li className="nav-item dropdown">
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

@@ -62,7 +62,6 @@ const Login = () => {
                     </div>
 
                     <button className="form-control btn btn-primary btn-lg btn-block d-block my-3" type="submit">{loading ? "Cargando..." : "Enviar"}</button>
-
                     {
                       message !== null && (
                         <div className="bg-danger text-wrap  d-block p-2 text-white">

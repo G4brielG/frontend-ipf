@@ -4,7 +4,6 @@ import {
   INICIO_SESION_FAILED,
   CERRAR_SESION
 } from '../types'
-
 const initialState = {
   loading: false,
   token: localStorage.getItem('token'),
