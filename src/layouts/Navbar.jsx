@@ -13,78 +13,23 @@ const Navbar = () => {
       >
         <div class="position-sticky">
           <div class="list-group list-group-flush">
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-              aria-current="true"
-            >
+            <Link to='/home' className="list-group-item py-2 ripple">
               <i class="fas fa-tachometer-alt fa-fw me-3" style={{ alignItems: "center", textAlign: "center"}}></i>
               <span>IPF</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"  // active
-            >
+            </Link>
+            <Link to='/home' class="list-group-item py-2 ripple">
               <i class="fas fa-home fa-fw me-3"></i>
               <span>Inicio</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item"
-            >
-              <i class="fas fa-lock fa-fw me-3"></i>
-              <span>Materias</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-            >
-              <i class="fas fa-chart-pie fa-fw me-3"></i>
-              <span>SEO</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-            >
-              <i class="fas fa-chart-bar fa-fw me-3"></i>
-              <span>Orders</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-            >
-              <i class="fas fa-globe fa-fw me-3"></i>
-              <span>International</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-            >
-              <i class="fas fa-building fa-fw me-3"></i>
-              <span>Partners</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-            >
-              <i class="fas fa-calendar fa-fw me-3"></i>
-              <span>Calendar</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-            >
+            </Link>
+            <Link to='/personas' className="list-group-item">
               <i class="fas fa-users fa-fw me-3"></i>
-              <span>Users</span>
-            </a>
-            <a
-              href="#"
-              class="list-group-item py-2 ripple"
-            >
-              <i class="fas fa-money-bill fa-fw me-3"></i>
-              <span>Sales</span>
-            </a>
-            <Link to="/" className="list-group-item" onClick={dispatch(cerrarSesion())}>
+              <span>Personas</span>
+            </Link>
+            <Link to='/personas' className="list-group-item">
+              <i class="fas fa-chart-bar fa-fw me-3"></i>
+              <span>Materias</span>
+            </Link>
+            <Link to="/" className="list-group-item" onClick={() => dispatch(cerrarSesion())}>
               <i class="fa-solid fa-right-to-bracket me-3 text-danger"></i>
               <label>Cerrar sesión</label>
             </Link>
