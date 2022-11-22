@@ -8,6 +8,8 @@ const Login = () => {
 
   const { loading, token, message } = useSelector((state) => state.login);
 
+  console.log("token", token)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
